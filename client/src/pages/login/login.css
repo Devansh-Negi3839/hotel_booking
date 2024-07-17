@@ -1,22 +1,51 @@
-.login {
+/* General page styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #003580 0%, #001d33 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
+}
+
+/* Login container styling */
+.login {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .lContainer {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.lInput{
-  height: 30px;
+.lInput {
+  height: 40px;
   padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
 }
 
-.lButton {
+.lInput:focus {
+  border-color: #0071c2;
+}
+
+.lButton, .rButton {
   border: none;
   padding: 10px 20px;
   background-color: #0071c2;
@@ -24,24 +53,32 @@
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-.lButton:disabled{
+.lButton:disabled, .rButton:disabled {
   background-color: #0071c28c;
   cursor: not-allowed;
 }
 
-.rButton {
-  border: none;
-  padding: 5px 10px;
-  background-color: #0071c2;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
+.lButton:hover, .rButton:hover {
+  background-color: #005fa3;
+  transform: scale(1.05);
 }
 
-.rButton:disabled{
+/* Link styling */
+.lLink {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.lButton:disabled, .rButton:disabled {
   background-color: #0071c28c;
   cursor: not-allowed;
+}
+
+.errorMessage {
+  color: red;
+  text-align: center;
 }

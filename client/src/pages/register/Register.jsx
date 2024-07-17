@@ -6,10 +6,9 @@ import "./register.css";
 
 const Register = () => {
   const [credentials, setCredentials] = useState({
-    username: undefined,
-    email: undefined,
-    password: undefined,
-
+    username: "",
+    email: "",
+    password: "",
   });
 
   const { loading, error, dispatch } = useContext(AuthContext);
@@ -37,21 +36,21 @@ const Register = () => {
       <div className="rContainer">
         <input
           type="text"
-          placeholder="username"
+          placeholder="Username"
           id="username"
           onChange={handleChange}
           className="rInput"
         />
         <input
           type="email"
-          placeholder="email"
+          placeholder="Email"
           id="email"
           onChange={handleChange}
           className="rInput"
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
           id="password"
           onChange={handleChange}
           className="rInput"
@@ -59,7 +58,7 @@ const Register = () => {
         <button disabled={loading} onClick={handleClick} className="rButton">
           Register
         </button>
-        {error && <span>{error.message}</span>}
+        {error && <span className="errorMessage">{error.message}</span>}
       </div>
     </div>
   );

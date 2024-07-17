@@ -6,8 +6,8 @@ import "./login.css";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
-    username: undefined,
-    password: undefined,
+    username: "",
+    password: "",
   });
 
   const { loading, error, dispatch } = useContext(AuthContext);
@@ -35,14 +35,14 @@ const Login = () => {
       <div className="lContainer">
         <input
           type="text"
-          placeholder="username"
+          placeholder="Username"
           id="username"
           onChange={handleChange}
           className="lInput"
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
           id="password"
           onChange={handleChange}
           className="lInput"
@@ -53,7 +53,7 @@ const Login = () => {
         <Link to="/register" className="lLink">
           <button className="rButton">Register</button>
         </Link>
-        {error && <span>{error.message}</span>}
+        {error && <span className="errorMessage">{error.message}</span>}
       </div>
     </div>
   );

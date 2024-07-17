@@ -3,25 +3,30 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Home from "./pages/home/Home";
-import Hotel from "./pages/hotel/Hotel";
-import List from "./pages/list/List";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register.jsx";
+import { Suspense, lazy } from "react";
 import axios from "axios";
 
-axios.defaults.baseURL="https://hotel-booking-api-52jl.onrender.com/api";
+axios.defaults.baseURL = "https://hotel-booking-api-52jl.onrender.com/api";
+
+// Lazy loading the components
+const Home = lazy(() => import("./pages/home/Home"));
+const Hotel = lazy(() => import("./pages/hotel/Hotel"));
+const List = lazy(() => import("./pages/list/List"));
+const Login = lazy(() => import("./pages/login/Login"));
+const Register = lazy(() => import("./pages/register/Register"));
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes> 
-        <Route path="/" element={<Home/>}/>
-        <Route path="/hotels" element={<List/>}/>
-        <Route path="/hotels/:id" element={<Hotel/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes> 
+          <Route path="/" element={<Home/>}/>
+          <Route path="/hotels" element={<List/>}/>
+          <Route path="/hotels/:id" element={<Hotel/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={<Register/>}/>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }
