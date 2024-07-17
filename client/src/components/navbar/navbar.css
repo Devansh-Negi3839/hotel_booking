@@ -1,11 +1,12 @@
-.navbar{
+/* navbar.css */
+.navbar {
   height: 50px;
   background-color: #003580;
   display: flex;
   justify-content: center;
 }
 
-.navContainer{
+.navContainer {
   width: 100%;
   max-width: 1024px;
   color: white;
@@ -14,14 +15,21 @@
   justify-content: space-between;
 }
 
-.logo{
+.logo {
   font-weight: 500;
 }
 
-.navButton{
+.navButton {
   margin-left: 20px;
-  border: none;
   padding: 5px 10px;
+  background-color: #fff; /* Background color for nav buttons */
+  color: #003580; /* Text color for nav buttons */
+  text-decoration: none; /* Remove default underline */
+  border: none;
   cursor: pointer;
-  color: #003580;
+  border-radius: 5px;
+}
+
+.navButton:hover {
+  background-color: #e0e0e0; /* Background color on hover */
 }

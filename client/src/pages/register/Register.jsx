@@ -1,13 +1,15 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import "./login.css";
+import "./register.css";
 
-const Login = () => {
+const Register = () => {
   const [credentials, setCredentials] = useState({
     username: undefined,
+    email: undefined,
     password: undefined,
+
   });
 
   const { loading, error, dispatch } = useContext(AuthContext);
@@ -20,43 +22,47 @@ const Login = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    dispatch({ type: "LOGIN_START" });
+    dispatch({ type: "REGISTER_START" });
     try {
-      const res = await axios.post("/auth/login", credentials);
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+      const res = await axios.post("/auth/register", credentials);
+      dispatch({ type: "REGISTER_SUCCESS", payload: res.data.details });
       navigate("/");
     } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+      dispatch({ type: "REGISTER_FAILURE", payload: err.response.data });
     }
   };
 
   return (
-    <div className="login">
-      <div className="lContainer">
+    <div className="register">
+      <div className="rContainer">
         <input
           type="text"
           placeholder="username"
           id="username"
           onChange={handleChange}
-          className="lInput"
+          className="rInput"
+        />
+        <input
+          type="email"
+          placeholder="email"
+          id="email"
+          onChange={handleChange}
+          className="rInput"
         />
         <input
           type="password"
           placeholder="password"
           id="password"
           onChange={handleChange}
-          className="lInput"
+          className="rInput"
         />
-        <button disabled={loading} onClick={handleClick} className="lButton">
-          Login
+        <button disabled={loading} onClick={handleClick} className="rButton">
+          Register
         </button>
-        <Link to="/register" className="lLink">
-          <button className="rButton">Register</button>
-        </Link>
         {error && <span>{error.message}</span>}
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
