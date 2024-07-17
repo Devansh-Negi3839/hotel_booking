@@ -33,6 +33,7 @@ const Register = () => {
 
   return (
     <div className="register">
+      <div className="background"></div>
       <div className="rContainer">
         <input
           type="text"

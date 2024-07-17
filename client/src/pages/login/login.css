@@ -1,22 +1,11 @@
-/* General page styling */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #003580 0%, #001d33 100%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-/* Login container styling */
+/* General styling for the login page */
 .login {
+  width: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  background: linear-gradient(135deg, #003580 0%, #001d33 100%);
 }
 
 .lContainer {
@@ -71,11 +60,6 @@ body {
   display: flex;
   justify-content: center;
   text-decoration: none;
-}
-
-.lButton:disabled, .rButton:disabled {
-  background-color: #0071c28c;
-  cursor: not-allowed;
 }
 
 .errorMessage {
