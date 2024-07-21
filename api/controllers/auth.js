@@ -13,8 +13,22 @@ export const register = async (req, res, next) => {
       password: hash,
     });
 
-    await newUser.save();
-    res.status(200).send("User has been created.");
+    const savedUser = await newUser.save();
+
+    // Create a JWT token
+    const token = jwt.sign(
+      { id: savedUser._id, isAdmin: savedUser.isAdmin },
+      process.env.JWT,
+      { expiresIn: "1h" } // Token will expire in 1 hour
+    );
+
+    const { password, isAdmin, ...otherDetails } = savedUser._doc;
+    res
+      .cookie("access_token", token, {
+        httpOnly: true,
+      })
+      .status(200)
+      .json({ details: { ...otherDetails }, isAdmin });
   } catch (err) {
     next(err);
   }
