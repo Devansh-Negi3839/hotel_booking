@@ -1,0 +1,22 @@
+services:
+  server:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: hotel-booking-backend
+    ports:
+      - "8800:8800"
+    env_file: ./api/.env
+    environment:
+      - MONGO=mongodb+srv://devansh3839:devansh3839@cluster0.v3xjenu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      - JWT=8hEnPGeoBqGUT6zksxt4G95gW+uMdzwe7EVaRnp0xRI=
+    dns: 8.8.8.8
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: hotel-booking-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
